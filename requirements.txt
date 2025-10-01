@@ -1,4 +1,8 @@
-opencv-python          # Xử lý webcam, ảnh
-mediapipe              # Face mesh landmarks
-numpy                  # Tính toán EAR, xử lý mảng
-playsound==1.2.2       # Phát âm thanh cảnh báo ổn định trên Windows
+opencv-python>=4.12.0
+mediapipe>=1.12.0
+scipy>=1.15.0
+playsound>=1.2.2
+pandas>=2.3.3
+plyer>=2.1.0
+pillow>=10.0.0
+matplotlib>=3.8.0
