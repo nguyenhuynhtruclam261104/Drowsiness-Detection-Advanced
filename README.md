@@ -38,7 +38,6 @@ Sao chép mã
 
 Chạy lệnh sau để cài các thư viện cần thiết:
 
-```bash
 pip install -r requirements.txt
 Lưu ý: playsound cần dùng phiên bản 1.2.2 để chạy ổn định trên Windows.
 
