@@ -42,7 +42,7 @@ Chạy lệnh sau để cài các thư viện cần thiết:
 pip install -r requirements.txt
 Lưu ý: playsound cần dùng phiên bản 1.2.2 để chạy ổn định trên Windows.
 
-5. Cách chạy dự án
+##5. Cách chạy dự án
 Đặt file alarm.mp3 vào cùng thư mục với drowsiness.py.
 
 Mở terminal, di chuyển đến thư mục dự án:
@@ -59,17 +59,17 @@ Webcam sẽ bật. Khi phát hiện buồn ngủ, sẽ hiển thị cảnh báo 
 
 Nhấn q để thoát chương trình.
 
-6. Tham số có thể chỉnh sửa
+##6. Tham số có thể chỉnh sửa
 EAR_THRESH: ngưỡng tỉ lệ mắt nhắm (mặc định 0.25).
 
 EAR_CONSEC_FRAMES: số frame liên tiếp mắt nhắm để cảnh báo (mặc định 20).
 
-7. Demo lớp học
+##7. Demo lớp học
 Mở webcam → để sinh viên thử nhắm mắt → hệ thống phát cảnh báo.
 
 Có thể kết hợp ghi log hoặc hiển thị trạng thái trên GUI sau này.
 
-8. Ghi chú
+##8. Ghi chú
 Dự án này dùng Mediapipe, không cần dlib.
 
 Chạy tốt trên Windows, CPU bình thường, không cần GPU.
