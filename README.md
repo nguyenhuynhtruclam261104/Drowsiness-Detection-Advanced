@@ -1,92 +1,76 @@
 # Drowsiness-Detection-Advanced
-Cảnh báo ngủ gật 
-# Drowsiness Detection Advanced (Mediapipe)
 
-## 1. Mục đích
-Dự án phát hiện **buồn ngủ khi lái xe hoặc khi sử dụng máy tính** thông qua webcam.  
-- Nếu người dùng **nhắm mắt liên tục** quá ngưỡng, hệ thống sẽ **phát cảnh báo âm thanh**.  
-- Có thể dùng để **demo trực tiếp trong lớp học** hoặc nghiên cứu.
+**Ứng dụng giám sát buồn ngủ & mất tập trung bằng webcam**, hướng đến người Việt.  
+Phù hợp cho học online, làm việc tại nhà hoặc nghiên cứu năng suất.
 
 ---
 
-## 2. Nguyên lý hoạt động
-
-1. **Webcam** lấy hình ảnh trực tiếp của người dùng.
-2. **Mediapipe Face Mesh** phát hiện khuôn mặt và các điểm landmark trên mắt.
-3. **Tính toán Eye Aspect Ratio (EAR)**:
-   - EAR là tỉ lệ giữa chiều cao và chiều rộng mắt.
-   - Nếu EAR < ngưỡng (`EAR_THRESH`) trong một số frame liên tiếp (`EAR_CONSEC_FRAMES`) → xác định mắt đang nhắm → cảnh báo.
-4. **Phát âm thanh cảnh báo** bằng file `alarm.mp3`.
-5. (Tuỳ chọn) Có thể lưu log thời điểm buồn ngủ, hiển thị trạng thái Awake/Drowsy trực quan.
+## Tính năng chính
+- Nhận diện trạng thái mắt (Tỉnh táo / Buồn ngủ) theo **EAR (Eye Aspect Ratio)**.  
+- Hiển thị video webcam trực tiếp trên GUI.  
+- Biểu đồ **realtime** về % mất tập trung.  
+- **Pop-up + âm thanh cảnh báo** khi buồn ngủ.  
+- **Folder logs/** tự động tạo, lưu file CSV **tiếng Việt**.  
+- Nút **Bắt đầu / Dừng / Xuất Log** linh hoạt.  
+- File CSV chi tiết:
+  - Thời gian bắt đầu / kết thúc buồn ngủ  
+  - Giá trị EAR  
+  - Trạng thái  
+- Dữ liệu log dùng để phân tích năng suất học tập / làm việc.
 
 ---
 
-## 3. Cấu trúc thư mục
+## Yêu cầu môi trường
+- Python >= 3.10  
+- Các thư viện cần cài đặt:
 
+opencv-python>=4.12.0
+mediapipe>=1.12.0
+scipy>=1.15.0
+playsound>=1.2.2
+pandas>=2.3.3
+plyer>=2.1.0
+pillow>=10.0.0
+matplotlib>=3.8.0
+
+css
+Sao chép mã
+
+Cài đặt nhanh bằng:
+```bash
+pip install -r requirements.txt
+Cấu trúc thư mục
+bash
+Sao chép mã
 Drowsiness-Detection-Advanced/
 │
-├── drowsiness.py # Code chính
-├── requirements.txt # Thư viện cần cài
-└── alarm.mp3 # File âm thanh cảnh báo
+├─ drowsiness.py          # Logic detection, EAR, cảnh báo, log
+├─ drowsiness_gui.py      # GUI Tkinter + biểu đồ realtime
+├─ alarm.mp3              # File âm thanh cảnh báo
+├─ logs/                  # Folder tự động lưu CSV tiếng Việt
+├─ requirements.txt       # Thư viện cần cài đặt
+└─ README.md
+Hướng dẫn sử dụng
+Chuẩn bị webcam và đặt alarm.mp3 trong cùng folder.
 
-yaml
-Sao chép mã
-
----
-
-## 4. Cài đặt thư viện
-
-Chạy lệnh sau để cài các thư viện cần thiết:
-pip install -r requirements.txt
- 
-Lưu ý: playsound cần dùng phiên bản 1.2.2 để chạy ổn định trên Windows.
-
----
-
-## 5. Cách chạy dự án
-
-Đặt file alarm.mp3 vào cùng thư mục với drowsiness.py.
-
-Mở terminal, di chuyển đến thư mục dự án:
+Chạy GUI:
 
 bash
 Sao chép mã
-cd D:\Drowsiness-Detection-Advanced
-Chạy chương trình:
+python drowsiness_gui.py
+Trên GUI:
 
-bash
-Sao chép mã
-python drowsiness.py
-Webcam sẽ bật. Khi phát hiện buồn ngủ, sẽ hiển thị cảnh báo trên màn hình và phát âm thanh cảnh báo.
+Bắt đầu: mở webcam, nhận diện buồn ngủ.
 
-Nhấn q để thoát chương trình.
+Dừng: tạm dừng webcam, giữ dữ liệu log.
 
-## 6. Tham số có thể chỉnh sửa
+Xuất Log: xuất CSV tiếng Việt vào folder logs/.
 
-EAR_THRESH: ngưỡng tỉ lệ mắt nhắm (mặc định 0.25).
+Biểu đồ realtime hiển thị % mất tập trung.
 
-EAR_CONSEC_FRAMES: số frame liên tiếp mắt nhắm để cảnh báo (mặc định 20).
+Lưu ý
+Chỉ chạy trên máy có webcam.
 
----
+File CSV tiếng Việt có dấu, mở trực tiếp bằng Excel.
 
-## 7. Demo lớp học
-
-Mở webcam → để sinh viên thử nhắm mắt → hệ thống phát cảnh báo.
-
-Có thể kết hợp ghi log hoặc hiển thị trạng thái trên GUI sau này.
-
----
-
-## 8. Ghi chú
-
-Dự án này dùng Mediapipe, không cần dlib.
-
-Chạy tốt trên Windows, CPU bình thường, không cần GPU.
-
-Có thể phát triển thêm:
-
-Giao diện đồ họa (Tkinter/PyQt).
-
-Lưu log CSV.
-
-Hỗ trợ nhiều người cùng lúc.
+Folder logs/ được tạo tự động, file có timestamp → dễ quản lý.
